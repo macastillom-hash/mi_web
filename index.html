@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!--
+        Indica al navegador que utilizaremos caracteres UTF-8.
+        Permite mostrar correctamente tildes, ñ y otros caracteres.
+    -->
+    <meta charset="UTF-8">
+
+    <!--
+        Hace que la página se adapte al ancho del dispositivo.
+
+        width=device-width:
+        utiliza el ancho real de la pantalla.
+
+        initial-scale=1.0:
+        establece el zoom inicial en 100%.
+
+        Esta línea es FUNDAMENTAL para trabajar Responsive Design.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparecerá en la pestaña del navegador -->
+    <title>WebPro Servicios</title>
+
+
+    <!-- =====================================================
+         CSS DE LA PÁGINA
+         En este ejercicio colocaremos el CSS dentro del HTML
+         para facilitar el aprendizaje.
+         ===================================================== -->
+    <style>
+
+
+        /* =====================================================
+           VARIABLES CSS
+           =====================================================
+
+           :root representa el elemento raíz del documento.
+
+           Aquí creamos variables que podremos reutilizar
+           en diferentes partes del CSS.
+
+           Ventaja:
+           si queremos cambiar el azul principal del sitio,
+           solamente modificamos una variable.
+        ===================================================== */
+
+        :root {
+
+            /* Azul principal utilizado en el sitio */
+            --azul: #155fc0;
+
+            /* Azul oscuro para textos y encabezados */
+            --azul-oscuro: #062b59;
+
+            /* Azul claro utilizado como fondo */
+            --azul-claro: #eaf4ff;
+
+            /* Naranja utilizado para llamadas a la acción */
+            --naranja: #ff6b25;
+
+            /* Color blanco */
+            --blanco: #ffffff;
+
+            /* Color principal del texto */
+            --texto: #10233f;
+        }
+
+
+        /* =====================================================
+           SELECTOR UNIVERSAL
+           =====================================================
+
+           El selector * selecciona TODOS los elementos HTML.
+
+           box-sizing: border-box;
+
+           Hace que el padding y el borde se incluyan dentro
+           del ancho y alto que definimos para un elemento.
+
+           Es una práctica muy utilizada para facilitar
+           el control de tamaños en CSS.
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           BODY
+           =====================================================
+
+           body representa el contenido visible de nuestra página.
+
+           margin: 0;
+           elimina el margen que el navegador agrega
+           automáticamente.
+
+           font-family:
+           establece la tipografía.
+
+           color:
+           establece el color general de los textos.
+        ===================================================== */
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: var(--texto);
+        }
+
+
+        /* =====================================================
+           HEADER
+           =====================================================
+
+           .encabezado corresponde al:
+
+           <header class="encabezado">
+
+           Aquí utilizaremos FLEXBOX.
+
+           ¿Por qué?
+
+           Porque necesitamos colocar dos elementos
+           principalmente en una fila:
+
+                WEBPRO       Inicio Servicios Contacto
+
+           Flexbox es muy apropiado para este tipo
+           de distribución.
+        ===================================================== */
+
+        .encabezado {
+
+            /*
+                width: min()
+
+                El contenedor ocupará como máximo 1100px,
+                pero en pantallas pequeñas utilizará el 90%
+                del ancho disponible.
+
+                Esto ayuda al comportamiento Responsive.
+            */
+            width: min(90%, 1100px);
+
+            /*
+                margin: auto
+
+                Centra horizontalmente el contenedor.
+            */
+            margin: auto;
+
+            /*
+                Espacio interno superior e inferior.
+            */
+            padding: 20px 0;
+
+
+            /* =================================================
+               FLEXBOX
+               ================================================= */
+
+            /*
+                Activa Flexbox.
+
+                IMPORTANTE:
+
+                Flexbox se aplica al elemento PADRE.
+
+                En este caso:
+
+                .encabezado
+                    ├── h1
+                    └── nav
+            */
+            display: flex;
+
+
+            /*
+                justify-content controla la distribución
+                sobre el eje principal.
+
+                space-between coloca:
+
+                WEBPRO ---------------- MENÚ
+
+                Es decir, lleva un elemento hacia un extremo
+                y el otro hacia el extremo contrario.
+            */
+            justify-content: space-between;
+
+
+            /*
+                align-items controla la alineación
+                sobre el eje transversal.
+
+                center permite que el logo y el menú
+                queden alineados verticalmente.
+            */
+            align-items: center;
+        }
+
+
+        /* =====================================================
+           MENÚ DE NAVEGACIÓN
+           =====================================================
+
+           .menu corresponde a:
+
+           <nav class="menu">
+
+           Nuevamente utilizamos Flexbox.
+
+           Ahora queremos colocar los enlaces:
+
+           Inicio    Servicios    Contacto
+
+           uno al lado del otro.
+        ===================================================== */
+
+        .menu {
+
+            /* Convierte el nav en un contenedor Flexbox */
+            display: flex;
+
+            /*
+                gap crea una separación de 25px
+                entre los elementos del menú.
+
+                Es más sencillo que colocar margin
+                individualmente a cada enlace.
+            */
+            gap: 25px;
+        }
+
+
+        /* =====================================================
+           ENLACES DEL MENÚ
+           =====================================================
+
+           .menu a significa:
+
+           "Selecciona los elementos <a> que estén
+           dentro de .menu".
+        ===================================================== */
+
+        .menu a {
+
+            /*
+                Utilizamos nuestra variable de color.
+            */
+            color: var(--azul-oscuro);
+
+            /*
+                Elimina el subrayado tradicional
+                de los enlaces.
+            */
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           HERO
+           =====================================================
+
+           Esta es la sección principal de presentación.
+
+           Corresponde a:
+
+           <section class="hero">
+
+           Normalmente aquí presentamos:
+           - qué ofrecemos
+           - una propuesta de valor
+           - una llamada a la acción
+        ===================================================== */
+
+        .hero {
+
+            /*
+                El contenido tendrá como máximo 1100px
+                y ocupará el 90% en pantallas pequeñas.
+            */
+            width: min(90%, 1100px);
+
+            /* Centra horizontalmente */
+            margin: auto;
+
+            /*
+                70px arriba y abajo.
+                0 a los lados.
+            */
+            padding: 70px 0;
+
+            /*
+                Utilizamos nuestra variable de
+                color de fondo.
+            */
+            background: var(--azul-claro);
+        }
+
+
+        /* =====================================================
+           BOTÓN / LLAMADA A LA ACCIÓN
+           =====================================================
+
+           Corresponde a:
+
+           <a class="boton">
+
+           Aunque HTML utiliza un enlace <a>, mediante CSS
+           podemos darle apariencia de botón.
+        ===================================================== */
+
+        .boton {
+
+            /*
+                Permite que el enlace respete
+                padding y dimensiones como un bloque,
+                pero continúe comportándose en línea.
+            */
+            display: inline-block;
+
+            /* Separación respecto al contenido anterior */
+            margin-top: 15px;
+
+            /* Espacio interno del botón */
+            padding: 12px 20px;
+
+            /* Color de fondo */
+            background: var(--naranja);
+
+            /* Color del texto */
+            color: var(--blanco);
+
+            /* Bordes redondeados */
+            border-radius: 8px;
+
+            /* Quitamos el subrayado del enlace */
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           SECCIÓN DE SERVICIOS
+           =====================================================
+
+           Esta sección contiene tres tarjetas:
+
+              ┌──────────┐
+              │ Diseño   │
+              └──────────┘
+
+              ┌──────────┐
+              │ Tiendas  │
+              └──────────┘
+
+              ┌──────────┐
+              │ Soporte  │
+              └──────────┘
+
+           Aquí utilizaremos CSS GRID.
+        ===================================================== */
+
+        .servicios {
+
+            /* Ancho máximo y ancho adaptable */
+            width: min(90%, 1100px);
+
+            /*
+                margin:
+
+                30px arriba
+                auto a los lados
+                60px abajo
+            */
+            margin: 30px auto 60px;
+
+
+            /* =================================================
+               CSS GRID
+               ================================================= */
+
+            /*
+                Activa CSS Grid.
+
+                A partir de este momento .servicios
+                se convierte en un contenedor Grid.
+            */
+            display: grid;
+
+
+            /*
+                Creamos tres columnas.
+
+                repeat(3, 1fr)
+
+                significa:
+
+                "crear 3 columnas del mismo tamaño".
+
+                1fr = una fracción del espacio disponible.
+            */
+            grid-template-columns: repeat(3, 1fr);
+
+
+            /*
+                gap establece el espacio entre
+                las tarjetas.
+            */
+            gap: 20px;
+        }
+
+
+        /* =====================================================
+           TARJETAS
+           =====================================================
+
+           Cada <article> tiene:
+
+           class="tarjeta"
+
+           Por eso todos los artículos reciben
+           este mismo diseño.
+        ===================================================== */
+
+        .tarjeta {
+
+            /*
+                Espacio interno.
+            */
+            padding: 25px;
+
+            /*
+                Borde fino alrededor de la tarjeta.
+            */
+            border: 1px solid #dce6f0;
+
+            /*
+                Redondea las esquinas.
+            */
+            border-radius: 12px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE DESIGN
+           =====================================================
+
+           @media permite aplicar CSS dependiendo
+           de determinadas condiciones.
+
+           En este caso:
+
+           max-width: 700px
+
+           significa:
+
+           "Cuando la pantalla tenga 700px de ancho
+           o menos, aplica estas reglas."
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+
+            /* ================================================
+               HEADER EN CELULAR
+               ================================================
+
+               En computador:
+
+               WEBPRO    Inicio Servicios Contacto
+
+               En celular queremos:
+
+               WEBPRO
+
+               Inicio
+               Servicios
+               Contacto
+
+               Por eso cambiamos la dirección de Flexbox.
+            */
+
+            .encabezado {
+
+                /*
+                    Antes teníamos:
+
+                    flex-direction: row
+
+                    Ahora utilizamos:
+
+                    column
+
+                    Los elementos se colocarán
+                    verticalmente.
+                */
+                flex-direction: column;
+
+
+                /*
+                    Separa el logo del menú
+                    cuando están uno debajo del otro.
+                */
+                gap: 15px;
+            }
+
+
+            /* ================================================
+               TARJETAS EN CELULAR
+               ================================================
+
+               En computador:
+
+               ┌─────┐ ┌─────┐ ┌─────┐
+               │  1  │ │  2  │ │  3  │
+               └─────┘ └─────┘ └─────┘
+
+               En celular:
+
+               ┌─────────┐
+               │    1    │
+               └─────────┘
+               ┌─────────┐
+               │    2    │
+               └─────────┘
+               ┌─────────┐
+               │    3    │
+               └─────────┘
+            */
+
+            .servicios {
+
+                /*
+                    Cambiamos de:
+
+                    3 columnas
+
+                    a:
+
+                    1 columna.
+
+                    Cada tarjeta ocupará
+                    una fila completa.
+                */
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+         =====================================================
+
+         <header> representa el encabezado del sitio.
+
+         Contiene:
+         - nombre/logo
+         - navegación principal
+    ===================================================== -->
+
+    <header class="encabezado">
+
+        <!-- Nombre de nuestra empresa/proyecto -->
+        <h1>WebPro</h1>
+
+
+        <!-- =================================================
+             NAV
+
+             <nav> representa la navegación principal.
+        ================================================== -->
+
+        <nav class="menu">
+
+            <!-- Enlace hacia el inicio -->
+            <a href="#">Inicio</a>
+
+            <!-- Enlace hacia servicios -->
+            <a href="#">Servicios</a>
+
+            <!-- Enlace hacia contacto -->
+            <a href="#">Contacto</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+
+         <main> contiene el contenido principal
+         de la página.
+
+         Normalmente debe existir un solo <main>.
+    ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+
+             Primera sección importante de contenido.
+        ================================================== -->
+
+        <section class="hero">
+
+            <!-- Título principal de la sección -->
+            <h2>Soluciones web para tu negocio</h2>
+
+            <!-- Descripción de la propuesta -->
+            <p>
+                Diseño y desarrollo de experiencias digitales modernas.
+            </p>
+
+            <!-- Llamada a la acción -->
+            <a href="#" class="boton">
+                Solicitar información
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             SERVICIOS
+
+             Contenedor Grid que organizará las tarjetas.
+        ================================================== -->
+
+        <section class="servicios">
+
+
+            <!-- =================================================
+                 ARTICLE 1
+
+                 Cada artículo representa un contenido
+                 independiente dentro de la sección.
+            ================================================== -->
+
+            <article class="tarjeta">
+
+                <h3>Diseño Web</h3>
+
+                <p>
+                    Sitios modernos y adaptables.
+                </p>
+
+            </article>
+
+
+            <!-- =================================================
+                 ARTICLE 2
+            ================================================== -->
+
+            <article class="tarjeta">
+
+                <h3>Tiendas Online</h3>
+
+                <p>
+                    Catálogos y experiencias de compra.
+                </p>
+
+            </article>
+
+
+            <!-- =================================================
+                 ARTICLE 3
+            ================================================== -->
+
+            <article class="tarjeta">
+
+                <h3>Soporte</h3>
+
+                <p>
+                    Acompañamiento y mantenimiento web.
+                </p>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
